@@ -1,23 +1,22 @@
-import * as React from 'react';
+import {useEffect, useCallback, useRef} from "react";
+import io from "socket.io-client";
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState<{
-    counter: number;
-  }>({
-    counter: 0
-  });
+export const useSocket = (path: string) => {
+    const SocketRef = useRef<SocketIOClient.Socket>()
+    
+    useEffect(() => {
+        if(!SocketRef.current){
+            SocketRef.current = io(path)
+        }
+        return () => {
+            SocketRef.current?.disconnect()
+        }
+    }, [path])
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++;
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
+    const addEventListener = useCallback((name: string, callback: any)  => {
+        SocketRef.current?.on(name, callback)
+        
+    }, [])
 
-  return counter;
+	return {SocketRef, addEventListener};
 };
