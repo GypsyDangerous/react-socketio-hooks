@@ -22,7 +22,10 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.33",
+    "socket.io-client": "^2.3.0"
+  },
   "peerDependencies": {
     "react": "^16.9.0"
   },

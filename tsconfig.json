@@ -37,5 +37,8 @@
     "dist",
     "example",
     "rollup.config.js"
+  ],
+  "types": [
+      "socket.io-client"
   ]
 }
