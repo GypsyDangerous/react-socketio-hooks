@@ -1,6 +1,6 @@
 {
   "name": "react-socketio-hooks",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "react hooks for working with socketIO webSockets",
   "author": "GypsyDangerous",
   "license": "MIT",
